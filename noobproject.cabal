@@ -1,0 +1,48 @@
+cabal-version:      3.4
+name:               noobproject
+version:            0.0.0.1
+author:             Lucie
+maintainer:         lucie@heremail.com
+extra-source-files: CHANGELOG.md
+
+library
+  hs-source-dirs:   src
+  build-depends:
+    base,
+    containers
+  exposed-modules:
+    Lib
+  default-language: Haskell2010
+
+executable noobproject
+  main-is:          Main.hs
+  hs-source-dirs:   app
+  build-depends:
+    base,
+    noobproject
+  default-language: Haskell2010
+  if os(windows)
+    ghc-options: -optl-mconsole
+
+test-suite noobproject-test
+  type:             exitcode-stdio-1.0
+  main-is:          Test.hs
+  hs-source-dirs:   test
+  build-depends:
+    base,
+    noobproject,
+    bytestring,
+    random,
+    tasty,
+    tasty-discover,
+    tasty-html,
+    tasty-golden,
+    tasty-hunit,
+    tasty-quickcheck,
+  other-modules:
+    Test.Tests.Sample
+    Test.Tests.Lib
+  default-language: Haskell2010
+  default-extensions:
+    OverloadedStrings
+    ScopedTypeVariables
